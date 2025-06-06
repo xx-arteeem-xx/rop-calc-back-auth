@@ -1,11 +1,25 @@
+// _____________________ ИМПОРТ БИБЛИОТЕК ______________________________________
 const express = require('express');
 const router = express.Router();
 const logger = require("../logger/logger.js");
 
+// ______________ НАСТРОЙКА ПАРАМЕТРОВ МЕТОДА ______________________________
+require('dotenv').config();
+const pgp = require("pg-promise")();
+
+const dbPath = `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
+const db = pgp(dbPath);
+
 // || МЕТОД 1. При переходе на страницу "/api/auth" авторизовываем пользователя ||
+// || Пример запроса: 
+// {
+//     "username": "artemka",
+//     "password": "1234"
+// }
 // || Пример ответа: 
 // {
-//     "message": "Hello!!!"
+//     "message": "Successfully logged in!",
+//     "secretKey": "ndI0_[!g@!ALTaW1M=Tv=5Wa=#dIIn}0"
 // }
 router.post('/', (req, res) => {
     try {
