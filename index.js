@@ -6,6 +6,7 @@ const cors = require("cors");
 
 // _____________________ ИМПОРТ ПУТЕЙ _________________________________________
 const getRoute = require('./routes/getRoute.js');
+const loginRoute = require('./routes/loginRoute.js');
 
 // ______________ НАСТРОЙКА ПАРАМЕТРОВ ПРИЛОЖЕНИЯ ______________________________
 const dbPath = `postgres://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
@@ -23,6 +24,7 @@ app.use(cors(corsOptions));
 
 // ________________________ МЕТОДЫ ____________________________________________
 app.use('/api', getRoute);
+app.use('/api/auth', loginRoute);
 
 // _____________________ ЗАПУСК ПРИЛОЖЕНИЯ _____________________________________
 app.listen(port, () => {
