@@ -11,6 +11,6 @@ router.post('/reg', [
     check("password", "Password must be between 8 and 16 characters long!").isLength({min: 8, max: 16})
 ], controller.reg);
 router.post('/login', controller.login);
-router.get('/', roleMiddleware(["ADMIN"]), controller.getUsers);
+router.get('/', authMiddleware, controller.authCheck);
 
 module.exports = router;

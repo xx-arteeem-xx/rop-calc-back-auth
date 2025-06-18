@@ -97,11 +97,10 @@ class AuthController {
         }
     }
 
-    async getUsers(req, res){
+    async authCheck(req, res){
         try {
-            const users = await User.find();
             res.status(200).json({
-                users
+                "message": "auth"
             });
             logger.info({
                 "path": req.path,
