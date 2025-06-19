@@ -14,6 +14,16 @@ function generateAccessToken(id, roles){
 };
 
 class AuthController {
+    // || МЕТОД 1. При переходе на страницу "/api/auth/reg/" Регистрируем пользователя ||
+    // || Пример запроса: 
+    // {
+    //     "username": "test1",
+    //     "password": "12345678"
+    // }
+    // || Пример ответа: 
+    // {
+    //     "message": "User test1 with role USER was saved successfully!"
+    // }
     async reg(req, res) {
         try {
             // ________________ ПРОВЕРЯЕМ НА ОШИБКИ ВАЛИДАЦИИ ___________________________
@@ -58,6 +68,16 @@ class AuthController {
         }
     }
 
+    // || МЕТОД 2. При переходе на страницу "/api/auth/login/" выдаем пользователю токен ||
+    // || Пример запроса: 
+    // {
+    //     "username": "test1",
+    //     "password": "12345678"
+    // }
+    // || Пример ответа: 
+    // {
+    //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6I...E1NjB9.9O8lQYHbK_wAchtnfFtSoNhrVAzcZ8Km7TpEeOlHYYQ"
+    // }
     async login(req, res){
         try {
             // ________________ ПРОВЕРЯЕМ НА СУЩЕСТВОВАНИЕ ПОЛЬЗОВАТЕЛЯ ___________________________
@@ -97,6 +117,11 @@ class AuthController {
         }
     }
 
+    // || МЕТОД 3. При переходе на страницу "/api/auth/" проверяем аутентификацию от пользователя ||
+    // || Пример ответа: 
+    // {
+    //     "message": "auth"
+    // }
     async authCheck(req, res){
         try {
             res.status(200).json({
